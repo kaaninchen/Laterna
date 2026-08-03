@@ -24,6 +24,7 @@ func listColors(w http.ResponseWriter, r *http.Request) {
 	colors, err := db.GetAllColors()
 	if err != nil {
 		utils.ErrorResponse(w, http.StatusInternalServerError, err.Error())
+		return
 	}
 	utils.SuccessResponse(w, http.StatusOK, colors)
 }

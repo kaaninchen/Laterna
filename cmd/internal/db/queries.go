@@ -71,7 +71,7 @@ func ControllerExists(id int) bool {
 }
 
 func GetAllColors() ([]models.LampState, error) {
-	rows, err := DB.Query("SELECT id, color, updated_at FROM controllers WHERE id > 0")
+	rows, err := DB.Query("SELECT id, color, active, updated_at FROM controllers WHERE id > 0")
 	if err != nil {
 		return nil, err
 	}
@@ -81,7 +81,7 @@ func GetAllColors() ([]models.LampState, error) {
 
 	for rows.Next() {
 		var state models.LampState
-		if err := rows.Scan(&state.ID, &state.Color, &state.UpdatedAt); err != nil {
+		if err := rows.Scan(&state.ID, &state.Color, &state.Active, &state.UpdatedAt); err != nil {
 			return nil, err
 		}
 		controllers = append(controllers, state)
@@ -90,7 +90,6 @@ func GetAllColors() ([]models.LampState, error) {
 	if err := rows.Err(); err != nil {
 		return nil, err
 	}
-
 	return controllers, nil
 }
 
@@ -127,5 +126,29 @@ func SetColor(id int, color string) error {
 	}
 
 	logger.DBLogger.Printf("Lamp %d color updated to %s", id, color)
+	return nil
+}
+
+func GetControllerState(id int) (bool, error) {
+	row := DB.QueryRow("SELECT active FROM controllers WHERE id = ?", id)
+
+	var state bool
+	err := row.Scan(&state)
+	if err != nil {
+		logger.DBLogger.Print(err)
+		return false, err
+	}
+
+	return state, nil
+}
+
+func SetControllerstate(active bool, id int) error {
+	_, err := DB.Exec("UPDATE controllers SET active = ? WHERE id = ?", active, id)
+	if err != nil {
+		logger.DBLogger.Printf("Failed to update active state for controller %d: %v", id, err)
+		return err
+	}
+
+	logger.DBLogger.Printf("Set active state for %d to %t", id, active)
 	return nil
 }

@@ -10,10 +10,10 @@ build:
 	@echo "🔧 Building binary..."
 	@cp $(CONFIG_FILE) $(BIN_DIR)/
 	@go build -o $(BIN_DIR)/$(BIN_NAME) $(MAIN_PKG)
-	@echo "✅ Build complete: $(BIN_DIR)/$(BIN_NAME)"
+	@echo "Build complete: $(BIN_DIR)/$(BIN_NAME)"
 	
 run:
-	@echo "🚀 Running server..."
+	@echo "Running server..."
 	@go run $(MAIN_PKG)
 clean:
 	@echo "🧹 Cleaning up..."

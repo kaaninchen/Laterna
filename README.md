@@ -24,7 +24,7 @@ Laterna requires a config.json file in the root directory. A [example config](ht
 cp config.json.example config.json
 ```
 
-You can leave the json as it is or configure it to your liking, although some configuration options (e.g. `verboseLogging`) aren't fully implemented yet.
+You can leave the config as it is or adjust it to your liking.
 
 Make sure that your firewall supports connections to the configured port for laterna (default: `8080`), otherwise clients won't be able to connect to the API. You can do so by using ufw on most linux distributions
 
@@ -74,10 +74,11 @@ The token is shown once on the first startup. To regenerate it, run the server w
 
 #### 🎛️ Controllers
 
-| Method | Route          | Description                   | Payload             |
-|--------|----------------|-------------------------------|---------------------|
-| POST   | `/controllers` | Create a new controller       |                     |
-| DELETE | `/controllers` | Delete an existing controller |{ "ID": 1}           |
+| Method | Route                      | Description                          | Payload    |
+|--------|----------------------------|--------------------------------------|------------|
+| POST   | `/controllers`             | Create a new controller              |            |
+| POST   | `/controllers/toggle/{id}` | Toggle an existing controller on/off |            |
+| DELETE | `/controllers`             | Delete an existing controller        | { "ID": 1} |
 
 
 </details>
@@ -126,6 +127,10 @@ $ http GET localhost:8080/api/v1/colors/1 "Authorization: $TOKEN"
 $ http PUT localhost:8080/api/v1/colors/1 "Authorization: $TOKEN" Color="#C2C342"
 ```
 
+#### Toggle controller on/off
+```bash
+$ http PUT localhost:8080/api/v1/colors/1 "Authorization: $TOKEN"
+```
 
 </details>
 
@@ -168,6 +173,13 @@ $ curl -X GET localhost:8080/api/v1/colors/1 \
 $ curl -X PUT localhost:8080/api/v1/colors/1 \
        -H "Authorization:$TOKEN" \
        -d '{"Color": "#C2C342"}'
+```
+
+#### Toggle controller on/off
+
+```bash
+$ curl -X POST localhost:8080/api/v1/colors/1 \
+       -H "Authorization:$TOKEN" 
 ```
 
 

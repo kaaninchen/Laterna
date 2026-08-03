@@ -34,6 +34,7 @@ func InitDB() {
 		id INTEGER PRIMARY KEY,
 		token_hash TEXT,
 		color TEXT,
+		active INTEGER DEFAULT 0,
 		updated_at DATETIME
 		);
 	`)

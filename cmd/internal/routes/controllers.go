@@ -13,6 +13,8 @@ import (
 func RegisterControllerRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /api/v1/controllers", middleware.WithAdminAuth(createController))
 	mux.HandleFunc("DELETE /api/v1/controllers", middleware.WithAdminAuth(deleteController))
+
+	mux.HandleFunc("POST /api/v1/controllers/toggle/{ID}", middleware.WithAdminAuth(toggleControllerState))
 }
 
 func createController(w http.ResponseWriter, r *http.Request) {
@@ -40,4 +42,34 @@ func deleteController(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	utils.SuccessResponse(w, http.StatusOK, models.DeleteData{Deleted: req.ID})
+}
+
+func toggleControllerState(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
+
+	idStr := r.PathValue("ID")
+	id, err := utils.IDtoInt((idStr))
+	if err != nil {
+		utils.ErrorResponse(w, http.StatusBadRequest, err.Error())
+		return
+	}
+
+	if !db.ControllerExists((id)) {
+		utils.ErrorResponse(w, http.StatusNotFound, "Controller not found")
+		return
+	}
+
+	currentState, err := db.GetControllerState(id)
+	if err != nil {
+		utils.ErrorResponse(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	err = db.SetControllerstate(!currentState, id)
+	if err != nil {
+		utils.ErrorResponse(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+
+	utils.SuccessResponse(w, http.StatusOK, models.ToggleController{ID: id, Active: !currentState})
 }

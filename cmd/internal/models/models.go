@@ -27,6 +27,7 @@ type HTTPResponse struct {
 type LampState struct {
 	ID        int       `json:"id"`
 	Color     string    `json:"color"`
+	Active    bool      `json:"active"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 
@@ -44,4 +45,9 @@ type DeleteData struct {
 
 type CreateData struct {
 	Created int `json:"created"`
+}
+
+type ToggleController struct {
+	ID     int  `json:"id"`
+	Active bool `json:"active"`
 }
