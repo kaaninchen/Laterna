@@ -21,11 +21,18 @@ func RegisterColorRoutes(mux *http.ServeMux) {
 
 func listColors(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
+
 	colors, err := db.GetAllColors()
 	if err != nil {
 		utils.ErrorResponse(w, http.StatusInternalServerError, err.Error())
 		return
 	}
+
+	if colors == nil {
+		utils.ErrorResponse(w, http.StatusOK, "No controllers found")
+		return
+	}
+
 	utils.SuccessResponse(w, http.StatusOK, colors)
 }
 
