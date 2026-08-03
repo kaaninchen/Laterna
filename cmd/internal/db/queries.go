@@ -86,6 +86,11 @@ func GetAllColors() ([]models.LampState, error) {
 		}
 		controllers = append(controllers, state)
 	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
 	return controllers, nil
 }
 
