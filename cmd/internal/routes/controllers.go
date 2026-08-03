@@ -1,7 +1,6 @@
 package routes
 
 import (
-	"encoding/json"
 	"net/http"
 
 	"github.com/siestaw/laterna/server/cmd/internal/db"
@@ -12,7 +11,7 @@ import (
 
 func RegisterControllerRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /api/v1/controllers", middleware.WithAdminAuth(createController))
-	mux.HandleFunc("DELETE /api/v1/controllers", middleware.WithAdminAuth(deleteController))
+	mux.HandleFunc("DELETE /api/v1/controllers/{ID}", middleware.WithAdminAuth(deleteController))
 
 	mux.HandleFunc("POST /api/v1/controllers/toggle/{ID}", middleware.WithAdminAuth(toggleControllerState))
 }
@@ -28,20 +27,24 @@ func createController(w http.ResponseWriter, r *http.Request) {
 
 func deleteController(w http.ResponseWriter, r *http.Request) {
 	defer r.Body.Close()
-	var req models.ControllerRequests
-	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
-		utils.ErrorResponse(w, http.StatusBadRequest, "Invalid JSON")
+
+	idStr := r.PathValue(("ID"))
+	id, err := utils.IDtoInt(idStr)
+	if err != nil {
+		utils.ErrorResponse(w, http.StatusBadRequest, err.Error())
 		return
 	}
-	if !db.ControllerExists(req.ID) || req.ID <= 0 {
-		utils.ErrorResponse(w, http.StatusBadRequest, "Invalid ID")
+
+	if !db.ControllerExists(id) {
+		utils.ErrorResponse(w, http.StatusNotFound, "Lamp not found")
 		return
 	}
-	if db.DeleteController(req.ID) != nil {
+
+	if db.DeleteController(id) != nil {
 		utils.ErrorResponse(w, http.StatusInternalServerError, "An error occured. Check the server logs for more information")
 		return
 	}
-	utils.SuccessResponse(w, http.StatusOK, models.DeleteData{Deleted: req.ID})
+	utils.SuccessResponse(w, http.StatusOK, models.DeleteData{Deleted: id})
 }
 
 func toggleControllerState(w http.ResponseWriter, r *http.Request) {

@@ -74,11 +74,11 @@ The token is shown once on the first startup. To regenerate it, run the server w
 
 #### 🎛️ Controllers
 
-| Method | Route                      | Description                          | Payload    |
-|--------|----------------------------|--------------------------------------|------------|
-| POST   | `/controllers`             | Create a new controller              |            |
-| POST   | `/controllers/toggle/{id}` | Toggle an existing controller on/off |            |
-| DELETE | `/controllers`             | Delete an existing controller        | { "ID": 1} |
+| Method | Route                      | Description                          | Payload |
+|--------|----------------------------|--------------------------------------|---------|
+| POST   | `/controllers`             | Create a new controller              |         |
+| POST   | `/controllers/toggle/{id}` | Toggle an existing controller on/off |         |
+| DELETE | `/controllers/{id}`        | Delete an existing controller        |         |
 
 
 </details>
@@ -103,10 +103,10 @@ The token is shown once on the first startup. To regenerate it, run the server w
 $ http POST localhost:8080/api/v1/controllers "Authorization: $TOKEN"
 ``` 
 
-#### Delete a controller
+#### Delete the controller with the ID of 1
 
 ```bash
-$ http DELETE localhost:8080/api/v1/controllers "Authorization: $TOKEN" ID:=1
+$ http DELETE localhost:8080/api/v1/controllers/1 "Authorization: $TOKEN"
 ```
 
 #### Get every controllers colors
@@ -115,19 +115,19 @@ $ http DELETE localhost:8080/api/v1/controllers "Authorization: $TOKEN" ID:=1
 $ http GET localhost:8080/api/v1/colors/ "Authorization: $TOKEN"
 ```
 
-#### Get a specific controllers's color
+#### Get color of the controller with the ID of 1
 
 ```bash
 $ http GET localhost:8080/api/v1/colors/1 "Authorization: $TOKEN"
 ```
 
-#### Set a controller's color
+#### Set the color of the controller with the ID of 1
 
 ```bash
 $ http PUT localhost:8080/api/v1/colors/1 "Authorization: $TOKEN" Color="#C2C342"
 ```
 
-#### Toggle controller on/off
+#### Toggle the controller with the ID 1 on/off
 ```bash
 $ http PUT localhost:8080/api/v1/colors/1 "Authorization: $TOKEN"
 ```
@@ -148,9 +148,8 @@ $ curl -X POST localhost:8080/api/v1/controllers \
 #### Delete a controller
 
 ```bash
-$ curl -X DELETE localhost:8080/api/v1/controllers \
+$ curl -X DELETE localhost:8080/api/v1/controllers/1 \
        -H "Authorization: $TOKEN" \
-       -d '{"ID": 1}'
 ```
 
 #### Get every controllers colors
