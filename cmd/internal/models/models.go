@@ -43,10 +43,6 @@ type DeleteData struct {
 	Deleted int `json:"deleted"`
 }
 
-type CreateData struct {
-	Created int `json:"created"`
-}
-
 type ToggleController struct {
 	ID     int  `json:"id"`
 	Active bool `json:"active"`

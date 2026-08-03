@@ -23,7 +23,7 @@ func createController(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		utils.ErrorResponse(w, http.StatusInternalServerError, "An error occured. Check the server logs for more information")
 	}
-	utils.SuccessResponse(w, http.StatusOK, models.CreateData{Created: int(ID)})
+	utils.SuccessResponse(w, http.StatusOK, models.ControllerRequests{ID: int(ID)})
 }
 
 func deleteController(w http.ResponseWriter, r *http.Request) {
