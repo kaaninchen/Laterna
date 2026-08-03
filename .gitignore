@@ -1,5 +1,6 @@
 logs/
 bin/
 .vscode/
+vendor/
 *.sql
 config.json
