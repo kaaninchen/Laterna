@@ -7,7 +7,7 @@ CONFIG_FILE := config.json
 
 build:
 	@mkdir -p $(BIN_DIR)
-	@echo "🔧 Building binary..."
+	@echo "Building binary..."
 	@cp $(CONFIG_FILE) $(BIN_DIR)/
 	@go build -o $(BIN_DIR)/$(BIN_NAME) $(MAIN_PKG)
 	@echo "Build complete: $(BIN_DIR)/$(BIN_NAME)"
@@ -16,7 +16,7 @@ run:
 	@echo "Running server..."
 	@go run $(MAIN_PKG)
 clean:
-	@echo "🧹 Cleaning up..."
+	@echo "Cleaning up..."
 	@rm -rf $(BIN_DIR) logs/
 	@go mod tidy	
 help:
