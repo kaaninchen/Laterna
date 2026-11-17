@@ -12,13 +12,13 @@
 ### 1. Clone the repository
 
 ```sh
-git clone https://github.com/siestaw/laterna.git
+git clone https://github.com/kaaninchen/laterna.git
 cd laterna
 ```
 
 ### 2. Configure the server
 
-Laterna requires a config.json file in the root directory. A [example config](https://github.com/siestaw/Laterna/blob/main/config.json.example) is provided
+Laterna requires a config.json file in the root directory. A [example config](https://github.com/kaaninchen/Laterna/blob/main/config.json.example) is provided
 
 ```sh
 cp config.json.example config.json
