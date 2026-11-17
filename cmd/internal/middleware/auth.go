@@ -3,8 +3,8 @@ package middleware
 import (
 	"net/http"
 
-	"github.com/siestaw/laterna/server/cmd/internal/db"
-	"github.com/siestaw/laterna/server/cmd/utils"
+	"github.com/kaaninchen/laterna/server/cmd/internal/db"
+	"github.com/kaaninchen/laterna/server/cmd/utils"
 )
 
 func WithAdminAuth(handlerFunc http.HandlerFunc) http.HandlerFunc {

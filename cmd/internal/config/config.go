@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/siestaw/laterna/server/cmd/internal/models"
+	"github.com/kaaninchen/laterna/server/cmd/internal/models"
 )
 
 func LoadConfig(path string) *models.Config {

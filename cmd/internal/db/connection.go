@@ -4,8 +4,8 @@ import (
 	"database/sql"
 	"flag"
 
+	"github.com/kaaninchen/laterna/server/cmd/internal/logger"
 	_ "github.com/mattn/go-sqlite3"
-	"github.com/siestaw/laterna/server/cmd/internal/logger"
 )
 
 var DB *sql.DB

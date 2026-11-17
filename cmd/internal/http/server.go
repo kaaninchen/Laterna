@@ -4,11 +4,11 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/siestaw/laterna/server/cmd/internal/config"
-	"github.com/siestaw/laterna/server/cmd/internal/db"
-	"github.com/siestaw/laterna/server/cmd/internal/logger"
-	"github.com/siestaw/laterna/server/cmd/internal/routes"
-	"github.com/siestaw/laterna/server/cmd/utils"
+	"github.com/kaaninchen/laterna/server/cmd/internal/config"
+	"github.com/kaaninchen/laterna/server/cmd/internal/db"
+	"github.com/kaaninchen/laterna/server/cmd/internal/logger"
+	"github.com/kaaninchen/laterna/server/cmd/internal/routes"
+	"github.com/kaaninchen/laterna/server/cmd/utils"
 )
 
 func StartHTTPServer() {

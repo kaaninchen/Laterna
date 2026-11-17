@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/siestaw/laterna/server/cmd/internal/models"
+	"github.com/kaaninchen/laterna/server/cmd/internal/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

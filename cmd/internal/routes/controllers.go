@@ -3,10 +3,10 @@ package routes
 import (
 	"net/http"
 
-	"github.com/siestaw/laterna/server/cmd/internal/db"
-	"github.com/siestaw/laterna/server/cmd/internal/middleware"
-	"github.com/siestaw/laterna/server/cmd/internal/models"
-	"github.com/siestaw/laterna/server/cmd/utils"
+	"github.com/kaaninchen/laterna/server/cmd/internal/db"
+	"github.com/kaaninchen/laterna/server/cmd/internal/middleware"
+	"github.com/kaaninchen/laterna/server/cmd/internal/models"
+	"github.com/kaaninchen/laterna/server/cmd/utils"
 )
 
 func RegisterControllerRoutes(mux *http.ServeMux) {

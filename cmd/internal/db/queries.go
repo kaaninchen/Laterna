@@ -3,9 +3,9 @@ package db
 import (
 	"errors"
 
-	"github.com/siestaw/laterna/server/cmd/internal/logger"
-	"github.com/siestaw/laterna/server/cmd/internal/models"
-	"github.com/siestaw/laterna/server/cmd/utils"
+	"github.com/kaaninchen/laterna/server/cmd/internal/logger"
+	"github.com/kaaninchen/laterna/server/cmd/internal/models"
+	"github.com/kaaninchen/laterna/server/cmd/utils"
 	"golang.org/x/crypto/bcrypt"
 )
 

@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/siestaw/laterna/server/cmd/internal/config"
+	"github.com/kaaninchen/laterna/server/cmd/internal/config"
 )
 
 var (

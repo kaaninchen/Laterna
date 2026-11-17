@@ -1,4 +1,4 @@
-module github.com/siestaw/laterna/server
+module github.com/kaaninchen/laterna/server
 
 go 1.24.4
 
